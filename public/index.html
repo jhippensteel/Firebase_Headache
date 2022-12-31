@@ -10,6 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-storage.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
        https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -22,7 +23,7 @@
             storageBucket: "iconic-guard-362816.appspot.com",
             messagingSenderId: "316284802587",
             appId: "1:316284802587:web:e52d085659cf4689ee4abe",
-            measurementId: "G-PY4KFT5WVV"
+            measurementId: "G-PY4KFT5WVV",
         };
         firebase.initializeApp(firebaseConfig);
     </script>
@@ -65,8 +66,10 @@
 
     <button id="createThing" class="btn btn-success">Create Random Thing</button>
 
-</section>
+    <input type="file" onchange="uploadFile(this.files)">
+    <img id="imgUpload" src="" width="100vw">
 
+</section>
 
 
 </body>
