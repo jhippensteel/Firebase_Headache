@@ -46,8 +46,9 @@ function uploadFile(files) {
     const task = bradRef.put(file)
 
     task.then(snapshot => {
-        console.log(snapshot);
-        const url = snapshot.downloadURL
-        document.querySelector("#imgUpload").setAttribute('src', url)
+        bradRef.getDownloadURL().then(url => {
+            var img = document.getElementById("imgUpload");
+            img.src = url;
+        })
     })
 }
