@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Basics</title>
+    <title>E-town CC</title>
+    <link rel="stylesheet" href="style.css"/>
+
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
@@ -30,15 +32,17 @@
 
     <script src="app.js" defer></script>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">-->
+
+    <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/iconic-guard-362816.appspot.com/o/images%2FScreenshot_20230101_070402.png?alt=media&token=2925e9bc-9801-4eea-91b4-498507a21bd4">
 
 
 </head>
 
 <body>
 
-<h1>My Awesome App 🔥</h1>
+<center><h1>Etown Coding Crew</h1></center>
 
 <section id="whenSignedOut">
 
@@ -49,8 +53,9 @@
 <section id="whenSignedIn" hidden="true">
 
     <div id="userDetails"></div>
-
     <button id="signOutBtn" class="btn btn-primary">Sign Out</button>
+
+    <input id="upload" type="file" onchange="uploadFile(this.files)">
 
 </section>
 
@@ -58,16 +63,10 @@
 
 <section>
 
-    <h2>My Firestore Things</h2>
+    <center><h2>Posts</h2></center>
 
-    <ul id="thingsList">
-
-    </ul>
-
-    <button id="createThing" class="btn btn-success">Create Random Thing</button>
-
-    <input type="file" onchange="uploadFile(this.files)">
-    <img id="imgUpload" src="" width="100vw">
+    <p></p>
+    <center><ul id="thingsList"></ul></center>
 
 </section>
 

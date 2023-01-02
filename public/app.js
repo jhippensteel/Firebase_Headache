@@ -19,36 +19,58 @@ signInBtn.onclick = () => auth.signInWithPopup(provider);
 
 signOutBtn.onclick = () => auth.signOut();
 
+var loggedIn = false;
 auth.onAuthStateChanged(user => {
     if (user) {
         // signed in
         whenSignedIn.hidden = false;
         whenSignedOut.hidden = true;
         userDetails.innerHTML = `<h3>Hello ${user.displayName}!</h3> <p>User ID: ${user.uid}</p>`;
+        loggedIn = true;
+        var userInfo = user;
     } else {
         // not signed in
         whenSignedIn.hidden = true;
         whenSignedOut.hidden = false;
         userDetails.innerHTML = '';
+        loggedIn = false;
     }
 });
 
 
-
+const db = firebase.firestore();
+let refsRef = db.collection("refs");
+let unsubscribe;
 function uploadFile(files) {
+    if(loggedIn === true) {
+        const file = files.item(0);
 
-    const storage = firebase.storage();
-    const storageRef = storage.ref();
-    const bradRef = storageRef.child("images/BradPo.jpg");
+        const storage = firebase.storage();
+        const storageRef = storage.ref();
+        const bradRef = storageRef.child("images/" + file.name);
+        const task = bradRef.put(file)
 
-    const file = files.item(0);
-
-    const task = bradRef.put(file)
-
-    task.then(snapshot => {
-        bradRef.getDownloadURL().then(url => {
-            var img = document.getElementById("imgUpload");
-            img.src = url;
+        task.then(snapshot => {
+            bradRef.getDownloadURL().then(url => {
+                auth.onAuthStateChanged(user=> {
+                    if (user) {
+                        // signed in
+                        refsRef.add({
+                            uid: user.uid,
+                            name: url,
+                        });
+                    }
+                })
+            })
         })
-    })
+
+
+    }
 }
+
+unsubscribe = refsRef.onSnapshot(querySnapshot => {
+    const items = querySnapshot.docs.map(doc => {
+        return `<li><img src="${doc.data().name}"></li>`
+    });
+    thingsList.innerHTML = items;
+});

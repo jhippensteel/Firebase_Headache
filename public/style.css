@@ -1,0 +1,20 @@
+body {
+    background-color: #1c2efb;
+    font-family: 'Times New Roman', serif;
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    display: inline;
+}
+
+button {
+    background-color: white;
+    width: 25%;
+}
+::-webkit-file-upload-button {
+    background: white;
+    width: 100%;
+}
